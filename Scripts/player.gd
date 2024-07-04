@@ -6,7 +6,8 @@ const TILE_SIZE: int = 48
 func _physics_process(delta: float) -> void:
 	player_input()
 
-func player_input() -> void:
+
+func player_input() -> void: 
 	if Input.is_action_just_pressed('move_right'):
 		velocity = Vector2.RIGHT
 		move(velocity)
@@ -16,7 +17,7 @@ func player_input() -> void:
 	elif Input.is_action_just_pressed('move_up'):
 		velocity = Vector2.UP
 		move(velocity)
-	if Input.is_action_just_pressed('move_down'):
+	elif Input.is_action_just_pressed('move_down'):
 		velocity = Vector2.DOWN
 		move(velocity)
 
@@ -37,8 +38,8 @@ func move(direction: Vector2) -> void:
 	var ray_offset = global_position + Vector2(TILE_SIZE, TILE_SIZE) * direction
 	var query = PhysicsRayQueryParameters2D.create(global_position, ray_offset)
 	var result = space_state.intersect_ray(query)
-
-	if result and result.collider.is_in_group("Wall"):
-		return
+	if result:
+		if result.collider.is_in_group("Wall"):
+			return
 
 	position += TILE_SIZE * direction
