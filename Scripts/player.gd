@@ -61,6 +61,8 @@ func move(direction: Vector2) -> void:
 	
 	position += TILE_SIZE * direction
 	player_moved.emit()
+	$SFX.stream = load("res://Assets/SFX/walk.wav")
+	$SFX.play()
 
 func try_attack(direction: Vector2) -> void:
 	var space_rid = get_world_2d().space
@@ -75,5 +77,9 @@ func try_attack(direction: Vector2) -> void:
 func take_damage(damage_taken: int) -> void:
 	Global.health -= damage_taken
 	if Global.health <= 0:
+		Sfx.get_child(4).play()
 		get_tree().reload_current_scene()
 	$AnimationPlayer.play('hit')
+	$SFX.stream = load("res://Assets/SFX/Hit.wav")
+	$SFX.volume_db = -20
+	$SFX.play()

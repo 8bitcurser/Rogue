@@ -60,3 +60,6 @@ shape = SubResource("RectangleShape2D_vskj7")
 libraries = {
 "": SubResource("AnimationLibrary_bdj5y")
 }
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0

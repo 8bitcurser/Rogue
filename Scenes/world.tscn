@@ -76,6 +76,9 @@ libraries = {
 "": SubResource("AnimationLibrary_huoag")
 }
 
+[node name="SFX" type="AudioStreamPlayer" parent="Player"]
+volume_db = -20.0
+
 [node name="Generation" type="Node" parent="."]
 script = ExtResource("3_3wl43")
 enemy_spawn_chance = 0.7
