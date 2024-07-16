@@ -1,0 +1,143 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6qakicovawe3"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_i8ahs"]
+[ext_resource type="FontFile" uid="uid://b3238xyvlstb2" path="res://Assets/Kenney Pixel.ttf" id="1_o5i81"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i8ahs")
+
+[node name="Intro" type="Panel" parent="."]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Intro"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_o5i81")
+theme_override_font_sizes/font_size = 75
+text = "Rogue"
+
+[node name="Buttons" type="VBoxContainer" parent="Intro"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="Intro/Buttons"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o5i81")
+theme_override_font_sizes/font_size = 50
+text = "Play
+"
+
+[node name="Quit" type="Button" parent="Intro/Buttons"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o5i81")
+theme_override_font_sizes/font_size = 50
+text = "Quit
+"
+
+[node name="Play" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Play"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_o5i81")
+theme_override_font_sizes/font_size = 75
+text = "Choose a seed"
+
+[node name="Buttons" type="VBoxContainer" parent="Play"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="SpinBox" type="SpinBox" parent="Play/Buttons"]
+layout_mode = 2
+max_value = 40000.0
+rounded = true
+alignment = 1
+
+[node name="Start" type="Button" parent="Play/Buttons"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o5i81")
+theme_override_font_sizes/font_size = 50
+text = "Play
+"
+
+[node name="Back" type="Button" parent="Play/Buttons"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o5i81")
+theme_override_font_sizes/font_size = 50
+text = "Quit
+"
+
+[connection signal="pressed" from="Intro/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Intro/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Play/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Play/Buttons/Back" to="." method="_on_back_pressed"]
