@@ -57,6 +57,7 @@ func take_damage(damage_taken: int) -> void:
 	health -= damage_taken
 
 	if health <= 0:
+		Global.enemies_killed += 1
 		queue_free()
 	$AnimationPlayer.play('hit')
 	if randf() > attack_chance:

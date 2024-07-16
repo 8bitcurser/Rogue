@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://b6qakicovawe3"]
+[gd_scene load_steps=6 format=4 uid="uid://lh04j2upolic"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_i8ahs"]
-[ext_resource type="FontFile" uid="uid://b3238xyvlstb2" path="res://Assets/Kenney Pixel.ttf" id="1_o5i81"]
-[ext_resource type="Texture2D" uid="uid://cdxd0u8ex75hq" path="res://Assets/Spritesheet.png" id="3_r81qa"]
+[ext_resource type="Script" path="res://Scripts/death_menu.gd" id="1_mxlkf"]
+[ext_resource type="FontFile" uid="uid://b3238xyvlstb2" path="res://Assets/Kenney Pixel.ttf" id="2_vvj3s"]
+[ext_resource type="Texture2D" uid="uid://cdxd0u8ex75hq" path="res://Assets/Spritesheet.png" id="3_s1nsb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nxl5m"]
-texture = ExtResource("3_r81qa")
+texture = ExtResource("3_s1nsb")
 separation = Vector2i(1, 1)
 1:0/0 = 0
 2:0/0 = 0
@@ -1076,14 +1076,14 @@ separation = Vector2i(1, 1)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_nxl5m")
 
-[node name="MainMenu" type="Control"]
+[node name="DeathMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i8ahs")
+script = ExtResource("1_mxlkf")
 
 [node name="Intro" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -1111,9 +1111,9 @@ offset_top = 64.0
 offset_right = 77.0
 offset_bottom = 121.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_o5i81")
+theme_override_fonts/font = ExtResource("2_vvj3s")
 theme_override_font_sizes/font_size = 75
-text = "Rogue"
+text = "You died!"
 
 [node name="Buttons" type="VBoxContainer" parent="Intro"]
 layout_mode = 1
@@ -1130,97 +1130,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Play" type="Button" parent="Intro/Buttons"]
-custom_minimum_size = Vector2(200, 50)
+[node name="Stats" type="Label" parent="Intro/Buttons"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_o5i81")
-theme_override_font_sizes/font_size = 50
-text = "Play
-"
+theme_override_fonts/font = ExtResource("2_vvj3s")
+theme_override_font_sizes/font_size = 30
+text = "Level Reached: 5
+Enemies defeated: 10
+Coins Collected: 60"
 
 [node name="Quit" type="Button" parent="Intro/Buttons"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_o5i81")
+theme_override_fonts/font = ExtResource("2_vvj3s")
 theme_override_font_sizes/font_size = 50
-text = "Quit
-"
-
-[node name="Play" type="Panel" parent="."]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(500, 500)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="Label" parent="Play"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -146.0
-offset_top = 67.0
-offset_right = 180.0
-offset_bottom = 124.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_o5i81")
-theme_override_font_sizes/font_size = 75
-text = "Choose a seed"
-
-[node name="Buttons" type="VBoxContainer" parent="Play"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="SpinBox" type="SpinBox" parent="Play/Buttons"]
-layout_mode = 2
-max_value = 40000.0
-rounded = true
-alignment = 1
-
-[node name="Start" type="Button" parent="Play/Buttons"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_o5i81")
-theme_override_font_sizes/font_size = 50
-text = "Play
-"
-
-[node name="Back" type="Button" parent="Play/Buttons"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_o5i81")
-theme_override_font_sizes/font_size = 50
-text = "Quit
+text = "Back to menu
 "
 
 [node name="Base" type="TileMapLayer" parent="." groups=["Wall"]]
 position = Vector2(287, 37)
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAABAAEAAAASAAAAAAAKAAEAAAAUAAAAAAABAAoAAAASAAIAAAAKAAoAAAAUAAIAAAABAAIAAAASAAEAAAABAAMAAAASAAEAAAABAAQAAAASAAEAAAABAAgAAAASAAEAAAABAAkAAAASAAEAAAACAAEAAAATAAAAAAADAAEAAAATAAAAAAAIAAEAAAATAAAAAAAJAAEAAAATAAAAAAACAAoAAAATAAIAAAADAAoAAAATAAIAAAAEAAoAAAATAAIAAAAJAAoAAAATAAIAAAAKAAIAAAAUAAEAAAAKAAMAAAAUAAEAAAAKAAQAAAAUAAEAAAAKAAgAAAAUAAEAAAAKAAkAAAAUAAEAAAAEAAEAAAATAAAAAAAIAAoAAAATAAIAAAAFAAEAAAATAAAAAAAGAAEAAAATAAAAAAAHAAEAAAATAAAAAAAKAAUAAAAUAAEAAAAKAAYAAAAUAAEAAAAKAAcAAAAUAAEAAAABAAUAAAASAAEAAAABAAYAAAASAAEAAAABAAcAAAASAAEAAAAFAAoAAAATAAIAAAAGAAoAAAATAAIAAAAHAAoAAAATAAIAAAADAAgAAAATAAEAAAAEAAkAAAATAAEAAAAIAAQAAAATAAEAAAACAAUAAAAYAAEAAAAIAAcAAAAbAAgAAAA=")
+tile_map_data = PackedByteArray("AAABAAEAAAASAAAAAAAKAAEAAAAUAAAAAAABAAoAAAASAAIAAAAKAAoAAAAUAAIAAAABAAIAAAASAAEAAAABAAMAAAASAAEAAAABAAQAAAASAAEAAAABAAgAAAASAAEAAAABAAkAAAASAAEAAAACAAEAAAATAAAAAAADAAEAAAATAAAAAAAIAAEAAAATAAAAAAAJAAEAAAATAAAAAAACAAoAAAATAAIAAAADAAoAAAATAAIAAAAEAAoAAAATAAIAAAAJAAoAAAATAAIAAAAKAAIAAAAUAAEAAAAKAAMAAAAUAAEAAAAKAAQAAAAUAAEAAAAKAAgAAAAUAAEAAAAKAAkAAAAUAAEAAAAEAAEAAAATAAAAAAAIAAoAAAATAAIAAAAFAAEAAAATAAAAAAAGAAEAAAATAAAAAAAHAAEAAAATAAAAAAAKAAUAAAAUAAEAAAAKAAYAAAAUAAEAAAAKAAcAAAAUAAEAAAABAAUAAAASAAEAAAABAAYAAAASAAEAAAABAAcAAAASAAEAAAAFAAoAAAATAAIAAAAGAAoAAAATAAIAAAAHAAoAAAATAAIAAAAJAAkAAAAAAA8AAAAEAAgAAAABAA4AAAAJAAUAAAAmAAsAAAACAAUAAAAiAAwAAAA=")
 tile_set = SubResource("TileSet_yfmq2")
 
-[connection signal="pressed" from="Intro/Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Intro/Buttons/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="Play/Buttons/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Play/Buttons/Back" to="." method="_on_back_pressed"]

@@ -17,6 +17,7 @@ func _on_start_pressed() -> void:
 	Global.health = Global.max_health
 	Global.level = 1
 	Global.coins = 0
+	Global.enemies_killed = 0
 	get_tree().change_scene_to_file("res://Scenes/world.tscn")
 
 func _on_back_pressed() -> void:

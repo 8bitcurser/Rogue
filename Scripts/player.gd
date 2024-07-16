@@ -78,7 +78,7 @@ func take_damage(damage_taken: int) -> void:
 	Global.health -= damage_taken
 	if Global.health <= 0:
 		Sfx.get_child(4).play()
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
 	$AnimationPlayer.play('hit')
 	$SFX.stream = load("res://Assets/SFX/Hit.wav")
 	$SFX.volume_db = -20
