@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdovplhrmljf6"]
+
+[ext_resource type="Texture2D" uid="uid://cdxd0u8ex75hq" path="res://Assets/Spritesheet.png" id="1_73yx7"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="2_xx4ws"]
+[ext_resource type="Script" path="res://Scripts/generation.gd" id="3_3wl43"]
+[ext_resource type="Script" path="res://Scripts/enemies.gd" id="4_dmpox"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="4_eq0ui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpl1p"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vskj7"]
+size = Vector2(16, 16)
+
+[node name="World" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(120, 120)
+scale = Vector2(3, 3)
+script = ExtResource("2_xx4ws")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+modulate = Color(0.0168267, 0.762924, 0.522314, 1)
+texture = ExtResource("1_73yx7")
+region_enabled = true
+region_rect = Rect2(476.903, 0.872162, 14.2252, 14.5522)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+modulate = Color(0.22585, 0.852071, 0.634148, 1)
+position = Vector2(-1.90735e-06, 0)
+shape = SubResource("RectangleShape2D_wpl1p")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="Generation" type="Node" parent="."]
+script = ExtResource("3_3wl43")
+
+[node name="Enemies" type="Node" parent="."]
+script = ExtResource("4_dmpox")
+
+[node name="Enemy" type="CharacterBody2D" parent="." groups=["Enemy"]]
+scale = Vector2(3, 3)
+script = ExtResource("4_eq0ui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+modulate = Color(0.930682, 0.515782, 0.120924, 1)
+texture = ExtResource("1_73yx7")
+region_enabled = true
+region_rect = Rect2(511, 103, 14, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("RectangleShape2D_vskj7")

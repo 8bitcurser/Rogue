@@ -1,6 +1,7 @@
 extends Node
 
 @onready var room_scene: PackedScene = load('res://Nodes/room.tscn')
+@onready var player: CharacterBody2D = $"../Player"
 
 
 var map_width: int = 7
@@ -16,10 +17,10 @@ var room_nodes: Array
 
 # Spawn Chance
 @export var enemy_spawn_chance: float
-@export var coins_spawn_chance: float
+@export var coin_spawn_chance: float
 @export var heart_spawn_chance: float
 
-@export var max_enemy_per_room: int
+@export var max_enemies_per_room: int
 @export var max_hearts_per_room: int
 @export var max_coins_per_room: int
 
@@ -29,10 +30,10 @@ func _ready() -> void:
 		map.append([])
 		for j in range(map_height):
 			map[i].append(false)
-	seed(375892334)
+	seed(Global.seed)
 	generate()
+	player.global_position = (first_room_pos * 816) + Vector2(262, 262)
 	# center the player inside the main room
-	$"../Player".global_position = (first_room_pos * 816) + Vector2(262, 262)
 
 
 func generate() -> void:
@@ -105,13 +106,13 @@ func instantiate_room() -> void:
 			if y > 0 and map[x][y - 1] == true:
 				room.north()
 			# if room on top exists we want to make a pathway to the south
-			if y < map_height and map[x][y + 1] == true:
+			if y < map_height -1 and map[x][y + 1] == true:
 				room.south()
 
 			if x > 0 and map[x - 1][y] == true:
 				room.west()
 
-			if x < map_width and map[x + 1][y] == true:
+			if x < map_width -1 and map[x + 1][y] == true:
 				room.east()
 
 			if(first_room_pos != Vector2(x, y)):
@@ -124,4 +125,16 @@ func instantiate_room() -> void:
 	calculate_key_and_exit()
 
 func calculate_key_and_exit() -> void:
-	pass
+	var max_dis: float = 0
+	var room_a: Node2D = null
+	var room_b: Node2D = null
+
+	for a: Node2D in room_nodes:
+		for b: Node2D in room_nodes:
+			var dis: float = a.position.distance_to(b.position)
+			if dis > max_dis:
+				room_a = a
+				room_b = b
+				max_dis = dis
+	room_a.spawn_node(room_a.key_node)
+	room_b.spawn_node(room_b.exit_node)
